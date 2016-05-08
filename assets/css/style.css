@@ -1,0 +1,112 @@
+/* Style Sheet for Louise Miller Portfolio
+	Week 3 Assignment - Hangman
+	May 8, 2016
+
+
+*/
+*,
+ *:before,
+ *:after {
+ 	-webkit-box-sizing: border-box;
+ 	-moz-box-sizing: border-box;
+ 	box-sizing: border-box;
+ }
+
+ .container {
+ 	margin: 0 auto;
+ 	width: 100%;
+ 	max-width: 960px;
+ 	border-width: 10px; 
+ 	border-style: solid double double solid;
+ 	border-color: #fff;
+ 	padding-top: 30px;
+ 	padding-bottom: 30px;
+}
+
+/*
+===================================================
+Background artwork
+===================================================
+*/
+.star-background {
+	background-image: url("../images/background.jpg");
+}
+
+/*
+===================================================
+Grid
+===================================================
+*/
+aside {
+	display: inline-block;
+	padding: 10px;
+	max-width: 400px;
+
+}
+
+img {
+	max-width: 350px;
+}
+
+.main-block {
+	display: inline-block;
+	border-width: 10px;
+	border-left-style: solid;
+	border-color: #fff;
+	padding: 20px;
+	background-color: blue;
+	width: 100%;
+	max-width: 600px;
+}
+
+h1 {
+ 	font-size: 80px;
+ 	text-align: center;
+ 	color:#fff;
+	text-shadow:2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+}
+
+h2 {
+	font-size: 30px;
+	color: #fff;
+	text-shadow:1px 1px 0 #bcbcbc, 2px 2px 0 #9c9c9c;
+	margin-bottom: 10px;
+}
+/*
+
+
+===================================================
+Sticky Footer
+===================================================
+*/
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+.page-wrap {
+	min-height: 100%;
+	/* equal to footer height */
+	margin-bottom: -30px;
+}
+
+.page-wrap:after {
+	content: "";
+	display: block;
+}
+
+.site-footer, .page-wrap:after {
+	height: 30px;
+}
+
+.site-footer {
+	color: #000;
+	background-color: #fff;
+	line-height: 25px;
+	font-size: 13px;
+	text-align: center;
+	border-top: 5px solid #000;
+}
