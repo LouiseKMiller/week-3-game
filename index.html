@@ -19,14 +19,47 @@
 				<h2>Press any key to get started!</h2>
 				<h2>Wins:</h2>
 				<h2>Current Word:</h2>
+				<div class="output" id="word"></div>
 				<h2>Number of Guesses Remaining:</h2>
-				<h2>Letters Already Guessed:</h2>
-
+				<div class="output" id="triesLeft"><span>12</span></div>
+				<h2>Letter already guessed:</h2>
+				<div class="output" id="guessList"><span>none</span></div>
 		</div>
 	</div>
 </div>
 	<footer class="site-footer">
 		<small>&copy; Copyright 2016 Louise K. Miller</small>
 	</footer>
+<script type="text/javascript">
+	var words = ["transporter", "nebula", "photon torpedos", "klingon", "enterprise", "jeffries tube", "spacial anomaly", "dilithium", "tricorder", "stardate", "prime directive", "cloaking device", "holodeck", "tribble", "borg collective", "shuttlecraft"];
+	var triesSoFar = 0;
+	var allGuesses = [];
+	document.onkeyup = function(event) {
+
+		// Determines which exact key was selected. Make it lowercase
+		var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+		// 
+		if (allGuesses.includes(userGuess) == false) {
+			if (words[0].includes(userGuess) == true) {
+				var htmlWord = (userGuess);
+				document.querySelector('#word').innerHTML = htmlWord;
+
+			}
+			else {		
+				allGuesses.push(userGuess);
+				triesSoFar = triesSoFar+1;
+				var htmlTries = (12-triesSoFar);
+				document.querySelector('#triesLeft').innerHTML = htmlTries;
+				var htmlGuess = allGuesses;
+				document.querySelector('#guessList').innerHTML = htmlGuess;
+			}
+		}
+	}
+
+
+
+</script>
+
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>

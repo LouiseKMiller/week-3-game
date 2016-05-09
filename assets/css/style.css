@@ -72,6 +72,13 @@ h2 {
 	text-shadow:1px 1px 0 #bcbcbc, 2px 2px 0 #9c9c9c;
 	margin-bottom: 10px;
 }
+
+#triesLeft, #guessList, #word {
+	font-size: 30px;
+	color: #fff;
+	text-shadow:1px 1px 0 #bcbcbc, 2px 2px 0 #9c9c9c;
+	margin-bottom: 10px;
+}
 /*
 
 
