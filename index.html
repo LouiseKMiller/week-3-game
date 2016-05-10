@@ -16,7 +16,7 @@
 	<h1><span></span>STAR TREK HANGMAN</h1>
 	<div class="container">
 		<aside>
-			<div class="output" id="answer">answer here</div>
+			<div class="output" id="answer">&nbsp;</div>
 			<img id="winPic" src="assets/images/spock.jpg">
 		</aside>
 		<div class="main-block">
@@ -28,7 +28,7 @@
 				<div class="output" id="word"></div>
 				<h2>Number of Guesses Remaining:</h2>
 				<div class="output" id="triesLeft"><span>12</span></div>
-				<h2>Letter you've already used:</h2>
+				<h2>Letters you've already used:</h2>
 				<div class="output" id="guessList"><span>none yet!</span></div>
 		</div>
 	</div>
@@ -55,10 +55,11 @@ hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				hmgame.updateWord();
 				hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				if (hmgame.currentWord() == hmgame.userWordArray.join("")) {
-					console.log("you win");
+					hmgame.soundWin();
 					hmgame.winCount++;
 					hmgame.displayWord('#wins', hmgame.winCount);
 					hmgame.displayWord('#answer',hmgame.currentWord());
+					hmgame.displayPic('winPic',hmgame.currentWinPic());
 					hmgame.newGame();
 				}
 			}
@@ -69,8 +70,8 @@ hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				hmgame.allGuesses.push(userGuess);
 				hmgame.displayWord('#triesLeft', hmgame.triesRemain)
 				hmgame.displayWord('#guessList', hmgame.allGuesses)
+				hmgame.soundAlarm();
 				if (hmgame.triesRemain ==0) {
-					console.log("you lose");
 					hmgame.newGame();
 				}
 			}
@@ -79,6 +80,7 @@ hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 		// Invalid key entry.  Sound the horn!
 		else {
 			console.log("input error");
+			hmgame.soundAlarm();
 		}
 	}
 

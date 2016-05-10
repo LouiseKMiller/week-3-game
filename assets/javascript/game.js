@@ -1,6 +1,21 @@
 
 var hmgame = {
-	words : ["borg collective", "photon torpedo", "transporter", "nebula", "klingon", "enterprise", "jeffries tube", "spacial anomaly", "dilithium", "tricorder", "stardate", "prime directive", "cloaking device", "holodeck", "tribble", "shuttlecraft"],
+	words : [["borg collective", "assets/images/borg.jpg"], 
+			["photon torpedo", "assets/images/photon.jpg"],
+			["transporter", "assets/images/transporter.jpg"],
+			["nebula", "assets/images/nebula.jpg"],
+			["klingon", "assets/images/klingon.jpg"],
+			["enterprise", "assets/images/enterprise.jpg"],
+			["jeffries tube", "assets/images/tube.jpg"],
+			["spacial anomaly", "assets/images/anomaly.jpg"],
+			["dilithium", "assets/images/dilithium.jpg"],
+			["tricorder", "assets/images/tricorder.jpg"],
+			["stardate", "assets/images/stardate.png"],
+			["prime directive", "assets/images/prime.jpg"],
+			["cloaking device", "assets/images/cloak.jpg"],
+			["holodeck", "assets/images/holodeck.jpg"],
+			["tribbles", "assets/images/tribbles.jpg"],
+			["shuttlecraft", "assets/images/shuttle.jpg"]],
 	triesRemain : 12,
 	allGuesses : [],
 	userWordArray : [],
@@ -9,7 +24,11 @@ var hmgame = {
 	winCount : 0,
 
 	currentWord : function () {
-			  return (this.words[this.roundNum]);
+			  return (this.words[this.roundNum][0]);
+			},
+	currentWinPic : function () {
+			return (this.words[this.roundNum][1]);
+
 			},
 	
 //
@@ -37,12 +56,32 @@ var hmgame = {
 						this.userWordArray[i]=userGuess;
 					}
 				},
-// updates userWordArray with correct guess
+//
+// updates HTML document with new string
 //
 	displayWord	: function (localTag,localString) {
-				var htmlWord1 = (localString);
+				var htmlWord1 = localString;
 				document.querySelector(localTag).innerHTML = htmlWord1;
 				},
+//
+// update the picture to match winning word
+//
+	displayPic : function (localTag,localPic) {
+				var htmlPic = localPic;
+				document.getElementById(localTag).src = htmlPic;
+				},
+//
+// sounds
+//
+	soundAlarm : function () {
+				var audio = new Audio('assets/sounds/alarm03.mp3');
+				audio.play();
+				},
+	soundWin : function () {
+				var audio = new Audio('assets/sounds/affirmative.mp3');
+				audio.play();
+				},
+
 //
 // starts new game
 //
