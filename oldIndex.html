@@ -30,27 +30,32 @@
 	<footer class="site-footer">
 		<small>&copy; Copyright 2016 Louise K. Miller</small>
 	</footer>
-<script type="text/javascript" src="assets/javascript/game2.js"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 <script type="text/javascript">
 
-hmgame.userWordArray = hmgame.initUserWord();
+userWordArray = initUserWord(userWordArray);
+console.log(userWordArray);
 
 	document.onkeyup = function(event) {
+
 		// Determines which exact key was selected. Make it lowercase
 		userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-		if (hmgame.validInput() ==true) {
-			if (hmgame.words[0].includes(userGuess) == true) {
-				hmgame.updateWord();
-				var htmlWord = (hmgame.userWordArray);
-				document.querySelector('#word').innerHTML = htmlWord;
-			}
+		
+		console.log(validInput());
+		// 
+		if (validInput() ==true) {
+			if (words[0].includes(userGuess) == true) {
+				userWordArray = update(userGuess, currentWordArray);
+				var htmlWord = (userGuess);
+				document.querySelector('#word').innerHTML = userWordArray;
 
+			}
 			else {		
-				hmgame.allGuesses.push(userGuess);
-				hmgame.triesSoFar = hmgame.triesSoFar+1;
-				var htmlTries = (12-hmgame.triesSoFar);
+				allGuesses.push(userGuess);
+				triesSoFar = triesSoFar+1;
+				var htmlTries = (12-triesSoFar);
 				document.querySelector('#triesLeft').innerHTML = (htmlTries);
-				var htmlGuess = hmgame.allGuesses;
+				var htmlGuess = allGuesses;
 				document.querySelector('#guessList').innerHTML = htmlGuess;
 			}
 		}
