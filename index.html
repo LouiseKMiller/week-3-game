@@ -6,54 +6,77 @@
 	<title>Star Trek Hangman game - Louise Miller Assignment 3</title>
 	<link rel="stylesheet" href="assets/css/reset.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+
 </head>
 <body>
 <div class="page-wrap star-background">
 	<h1><span></span>STAR TREK HANGMAN</h1>
 	<div class="container">
 		<aside>
+			<div class="output" id="answer">answer here</div>
 			<img src="assets/images/spock.jpg">
 		</aside>
 		<div class="main-block">
 
-				<h2>Press any key to get started!</h2>
-				<h2>Wins:</h2>
-				<h2>Current Word:</h2>
+				<h2>Guess a letter by pressing the key!</h2>
+				<h2>Wins so far:</h2>
+				<div class="output" id="wins">0</div>
+				<h2>Current Word to Guess: </h2>
 				<div class="output" id="word"></div>
 				<h2>Number of Guesses Remaining:</h2>
 				<div class="output" id="triesLeft"><span>12</span></div>
-				<h2>Letter already guessed:</h2>
-				<div class="output" id="guessList"><span>none</span></div>
+				<h2>Letter you've already used:</h2>
+				<div class="output" id="guessList"><span>none yet!</span></div>
 		</div>
 	</div>
 </div>
 	<footer class="site-footer">
 		<small>&copy; Copyright 2016 Louise K. Miller</small>
 	</footer>
-<script type="text/javascript" src="assets/javascript/game2.js"></script>
+
 <script type="text/javascript">
 
 hmgame.userWordArray = hmgame.initUserWord();
+hmgame.displayWord('#word', hmgame.userWordArray.join(" "));
+
 
 	document.onkeyup = function(event) {
 		// Determines which exact key was selected. Make it lowercase
 		userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+		// Check if a < key selected < z, and if user did not already try that key
 		if (hmgame.validInput() ==true) {
-			if (hmgame.words[0].includes(userGuess) == true) {
+
+			// If user guessed a correct letter, update guessed word and see if user won
+			if (hmgame.currentWord().includes(userGuess) == true) {
 				hmgame.updateWord();
-				var htmlWord = (hmgame.userWordArray);
-				document.querySelector('#word').innerHTML = htmlWord;
+				hmgame.displayWord('#word', hmgame.userWordArray.join(" "));
+				if (hmgame.currentWord() == hmgame.userWordArray.join("")) {
+					console.log("you win");
+					hmgame.winCount++;
+					hmgame.displayWord('#wins', hmgame.winCount);
+					hmgame.displayWord('#answer',hmgame.currentWord());
+					hmgame.newGame();
+				}
 			}
 
+			// If user guessed wrong letter, update list of guessed letters and decrement remaining tries
 			else {		
+				hmgame.triesRemain = hmgame.triesRemain-1;
 				hmgame.allGuesses.push(userGuess);
-				hmgame.triesSoFar = hmgame.triesSoFar+1;
-				var htmlTries = (12-hmgame.triesSoFar);
-				document.querySelector('#triesLeft').innerHTML = (htmlTries);
-				var htmlGuess = hmgame.allGuesses;
-				document.querySelector('#guessList').innerHTML = htmlGuess;
+				hmgame.displayWord('#triesLeft', hmgame.triesRemain)
+				hmgame.displayWord('#guessList', hmgame.allGuesses)
+				if (hmgame.triesRemain ==0) {
+					console.log("you lose");
+					hmgame.newGame();
+				}
 			}
 		}
+
+		// Invalid key entry.  Sound the horn!
 		else {
 			console.log("input error");
 		}
