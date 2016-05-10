@@ -81,7 +81,17 @@ var hmgame = {
 				var audio = new Audio('assets/sounds/affirmative.mp3');
 				audio.play();
 				},
-
+//
+// user wins a game
+//
+	winGame : function () {
+			this.soundWin();
+			this.winCount++;
+			this.displayWord('#wins', this.winCount);
+			this.displayWord('#answer',this.currentWord());
+			this.displayPic('winPic',this.currentWinPic());
+			this.newGame();
+	},
 //
 // starts new game
 //

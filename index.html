@@ -39,11 +39,15 @@
 
 <script type="text/javascript">
 
-hmgame.userWordArray = hmgame.initUserWord();
+// Initialize screen with first word
+//
+hmgame.initUserWord();
 hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 
-
+// When the user presses a key
+//
 	document.onkeyup = function(event) {
+
 		// Determines which exact key was selected. Make it lowercase
 		userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
@@ -55,12 +59,7 @@ hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				hmgame.updateWord();
 				hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				if (hmgame.currentWord() == hmgame.userWordArray.join("")) {
-					hmgame.soundWin();
-					hmgame.winCount++;
-					hmgame.displayWord('#wins', hmgame.winCount);
-					hmgame.displayWord('#answer',hmgame.currentWord());
-					hmgame.displayPic('winPic',hmgame.currentWinPic());
-					hmgame.newGame();
+					hmgame.winGame();
 				}
 			}
 
@@ -77,14 +76,11 @@ hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 			}
 		}
 
-		// Invalid key entry.  Sound the horn!
+		// Invalid key entry.  Sound the alarm!
 		else {
-			console.log("input error");
 			hmgame.soundAlarm();
 		}
 	}
-
-
 
 </script>
 
