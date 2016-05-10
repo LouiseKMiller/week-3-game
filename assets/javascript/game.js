@@ -1,6 +1,6 @@
 
 var hmgame = {
-	words : ["test", "photon torpedo", "transporter", "nebula", "klingon", "enterprise", "jeffries tube", "spacial anomaly", "dilithium", "tricorder", "stardate", "prime directive", "cloaking device", "holodeck", "tribble", "borg collective", "shuttlecraft"],
+	words : ["borg collective", "photon torpedo", "transporter", "nebula", "klingon", "enterprise", "jeffries tube", "spacial anomaly", "dilithium", "tricorder", "stardate", "prime directive", "cloaking device", "holodeck", "tribble", "shuttlecraft"],
 	triesRemain : 12,
 	allGuesses : [],
 	userWordArray : [],
@@ -12,10 +12,20 @@ var hmgame = {
 			  return (this.words[this.roundNum]);
 			},
 	
+//
+// initializes userWord to match length of currentWord, insert spaces, and replace letters with underscores
+//
+	initUserWord : function() {
+				for (var i=0; (i < this.currentWord().length); i++) {
+					if (this.currentWord().charCodeAt(i)==32) this.userWordArray[i] = " ";
+					else this.userWordArray[i]= "_";
+					}
+				return this.userWordArray;
+				},
 
+//
 // checks userGuess to see if it is a letter and if user has already guessed the letter
-
-
+//
 	validInput : function () {
 				return ((this.allGuesses.includes(userGuess) == false) && (userGuess.charCodeAt(0) > 96) && (userGuess.charCodeAt(0) < 123));
 				},
@@ -34,16 +44,6 @@ var hmgame = {
 				document.querySelector(localTag).innerHTML = htmlWord1;
 				},
 //
-// initializes userWord to match length of currentWord, insert spaces, and replace letters with underscores
-//
-	initUserWord : function() {
-				for (var i=0; (i < this.currentWord().length); i++) {
-					if (this.currentWord().charCodeAt(i)==32) this.userWordArray[i] = "&nbsp";
-					else this.userWordArray[i]= "_";
-					}
-				return this.userWordArray;
-				},
-//
 // starts new game
 //
 	newGame : function() {
@@ -54,7 +54,7 @@ var hmgame = {
 			this.displayWord('#guessList', 'None Yet!');
 			this.userWordArray = [];
 			this.userWordArray = this.initUserWord();
-			this.displayWord('#word', this.userWordArray.join(" "));
+			this.displayWord('#word', this.userWordArray.join("&nbsp"));
 
 	}
 

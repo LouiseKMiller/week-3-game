@@ -17,7 +17,7 @@
 	<div class="container">
 		<aside>
 			<div class="output" id="answer">answer here</div>
-			<img src="assets/images/spock.jpg">
+			<img id="winPic" src="assets/images/spock.jpg">
 		</aside>
 		<div class="main-block">
 
@@ -40,7 +40,7 @@
 <script type="text/javascript">
 
 hmgame.userWordArray = hmgame.initUserWord();
-hmgame.displayWord('#word', hmgame.userWordArray.join(" "));
+hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 
 
 	document.onkeyup = function(event) {
@@ -53,7 +53,7 @@ hmgame.displayWord('#word', hmgame.userWordArray.join(" "));
 			// If user guessed a correct letter, update guessed word and see if user won
 			if (hmgame.currentWord().includes(userGuess) == true) {
 				hmgame.updateWord();
-				hmgame.displayWord('#word', hmgame.userWordArray.join(" "));
+				hmgame.displayWord('#word', hmgame.userWordArray.join("&nbsp"));
 				if (hmgame.currentWord() == hmgame.userWordArray.join("")) {
 					console.log("you win");
 					hmgame.winCount++;
